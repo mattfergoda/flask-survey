@@ -38,4 +38,4 @@ def question_page(question_id):
         return render_template("question.html", question=survey.questions[question_id], question_id=question_id)
     else:
 
-        return render_template("completion.html")
+        return render_template("completion.html", survey=survey, responses=responses)
