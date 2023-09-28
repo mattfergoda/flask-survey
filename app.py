@@ -44,7 +44,11 @@ def question_page(question_id):
 
     if question_id < len(survey.questions):
 
-        return render_template("question.html", question=survey.questions[question_id], question_id=question_id+1)
+        return render_template("question.html", question=survey.questions[question_id])
     else:
+        # TODO: Redirect instead.
+        return redirect("/complete")
 
-        return render_template("completion.html", survey=survey, responses=responses)
+@app.get("/complete")
+def completion_page():
+    return render_template("completion.html", survey=survey, responses=responses)
