@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <h1>{{ survey.title }}</h1>
+  <h1>Welcome to the Survey Hub</h1>
   <p>
-    {{ survey.instructions }}
+    Pick a survey to take.
   </p>
 
   <!--
@@ -11,6 +11,12 @@
     You'll need to write the applicable code to handle this request
    -->
   <form action="/begin" method="POST">
+    <select name="survey_code">
+      {% for survey in surveys %}
+      <option value="{{ surveys[survey].code }}">{{ surveys[survey].title }}: {{ surveys[survey].instructions }}</option>
+    {% endfor %}
+    </select>
+
     <button>Start!</button>
   </form>
 
