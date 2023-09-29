@@ -36,7 +36,8 @@ def handle_question():
     response to response list. Redirects to next question"""
 
     responses = session[SESSION_KEY]
-    responses.append(request.form["answer"])
+    responses.append(
+        {"answer": request.form["answer"], "comment": request.form.get("comment")})
     session[SESSION_KEY] = responses
 
     return redirect(f"/question/{len(session[SESSION_KEY])}")

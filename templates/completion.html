@@ -2,12 +2,17 @@
 
 {% block content %}
 
-  <h1>Thanks for completing the {{ survey.title }}!</h1>
+<h1>Thanks for completing the {{ survey.title }}!</h1>
 
-  <ul>
-    {% for question in survey.questions %}
-      <li><b>{{ question.prompt }}</b> {{ session["responses"][loop.index0] }}</li>
-    {% endfor %}
-  </ul>
+<ul>
+  {% for question in survey.questions %}
+  <li><b>{{ question.prompt }}</b> {{
+    session["responses"][loop.index0].answer}}
+    {% if session["responses"][loop.index0].comment %}
+    <b>comment:</b> {{session["responses"][loop.index0].comment }}
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
 
 {% endblock %}
